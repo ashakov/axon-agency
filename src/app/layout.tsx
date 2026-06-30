@@ -36,14 +36,15 @@ export const metadata: Metadata = {
   description: site.description,
   applicationName: site.name,
   keywords: [
-    'AI automation agency',
-    'AI agents',
-    'AI employees',
-    'CRM automation',
-    'AI sales systems',
-    'AI customer support',
-    'AI voice agents',
-    'business process automation',
+    'AI-автоматизация',
+    'агентство AI-автоматизации',
+    'AI-агенты',
+    'AI-сотрудники',
+    'автоматизация CRM',
+    'AI-системы продаж',
+    'AI-поддержка клиентов',
+    'голосовые AI-агенты',
+    'автоматизация бизнес-процессов',
   ],
   authors: [{ name: site.legalName }],
   creator: site.legalName,
@@ -79,7 +80,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${mono.variable}`} suppressHydrationWarning>
       <body>
         <a href="#main" className="skip-link">
-          Skip to content
+          Перейти к содержимому
         </a>
         {children}
         <script

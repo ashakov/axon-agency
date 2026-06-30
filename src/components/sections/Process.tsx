@@ -6,10 +6,10 @@ export function Process() {
   return (
     <Section id="process" labelledBy="process-title" className="bg-bg-elevated/40">
       <SectionHeader
-        eyebrow="How it works"
+        eyebrow="Как мы работаем"
         id="process-title"
-        title="A short path from chaos to compounding systems."
-        lead="No six-month discovery. We move in tight cycles and put something working in front of you fast."
+        title="Короткий путь от хаоса к системам, что копят эффект."
+        lead="Без полугодового «обследования». Двигаемся короткими циклами и быстро показываем рабочий результат."
       />
       <Reveal group className="mt-16 grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-2 lg:grid-cols-4">
         {steps.map((s) => (

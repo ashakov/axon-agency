@@ -13,6 +13,7 @@ import { RoiCalculator } from '@/components/sections/RoiCalculator';
 import { CaseStudies } from '@/components/sections/CaseStudies';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { Technology } from '@/components/sections/Technology';
+import { LeadMagnet } from '@/components/sections/LeadMagnet';
 import { Faq } from '@/components/sections/Faq';
 import { FinalCta } from '@/components/sections/FinalCta';
 import { faqJsonLd } from '@/lib/seo';
@@ -33,6 +34,7 @@ export default function HomePage() {
         <RoiCalculator />
         <CaseStudies />
         <Testimonials />
+        <LeadMagnet />
         <Technology />
         <Faq />
         <FinalCta />

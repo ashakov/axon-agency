@@ -1,6 +1,10 @@
 /**
- * Single source of truth for all marketing content.
- * Sections import from here so copy and data never duplicate.
+ * Единственный источник правды для всего маркетингового контента.
+ * Секции импортируют данные отсюда — тексты и данные не дублируются.
+ *
+ * ⚠️ ПЕРЕД ЗАПУСКОМ ЗАМЕНИТЕ ПЛЕЙСХОЛДЕРЫ (помечены [ЗАМЕНИТЬ]):
+ *    trustedBy, caseStudies, testimonials — поставьте реальные данные.
+ *    Подробности в README → раздел «Что заменить перед запуском».
  */
 import type { LucideIcon } from 'lucide-react';
 import {
@@ -32,102 +36,103 @@ import {
 
 /* ── Hero ───────────────────────────────────────────────── */
 export const hero = {
-  eyebrow: 'AI Automation Studio',
-  title: ['Put the repetitive', 'work on autopilot.'],
+  eyebrow: 'Студия AI-автоматизации',
+  title: ['Переведите рутину', 'на автопилот.'],
   subtitle:
-    'We design AI systems that capture every lead, answer every customer, and run the operations your team shouldn’t. You keep the margin.',
-  primaryCta: 'Book a strategy session',
-  secondaryCta: 'See how it works',
+    'Мы строим AI-системы, которые ловят каждую заявку, отвечают каждому клиенту и ведут операции, которыми ваша команда заниматься не должна. Маржа остаётся у вас.',
+  primaryCta: 'Записаться на стратегическую сессию',
+  secondaryCta: 'Как это работает',
 } as const;
 
-/* ── Stats / outcomes ───────────────────────────────────── */
+/* ── Метрики / результаты ───────────────────────────────── */
 export type Stat = { value: number; suffix: string; label: string; prefix?: string };
 export const stats: Stat[] = [
-  { value: 42, suffix: '%', label: 'Lower operational cost on automated workflows' },
-  { value: 3.1, suffix: '×', label: 'More qualified leads handled per rep' },
-  { value: 24, suffix: '/7', label: 'Coverage across calls, chat, and email' },
-  { value: 9, suffix: ' days', label: 'Median time from kickoff to first system live' },
+  { value: 42, suffix: '%', label: 'Ниже операционные издержки на автоматизированных процессах' },
+  { value: 3.1, suffix: '×', label: 'Больше квалифицированных заявок на одного сотрудника' },
+  { value: 24, suffix: '/7', label: 'Покрытие звонков, чатов и почты без выходных' },
+  { value: 9, suffix: ' дней', label: 'Медиана от старта до первой работающей системы' },
 ];
 
-/* ── Logo cloud ─────────────────────────────────────────── */
+/* ── Логотипы клиентов ──────────────────────────────────── */
+/* [ЗАМЕНИТЬ] на реальные названия/логотипы клиентов. */
 export const trustedBy: string[] = [
-  'Northbridge',
-  'Meridian Clinics',
-  'Vance & Cole',
-  'Harbor Realty',
-  'Lumen Retail',
-  'Atlas Construction',
-  'Sierra Hotels',
-  'Foundry Labs',
+  'Северный Мост',
+  'Клиники Меридиан',
+  'Ванс и Коул',
+  'Гавань Недвижимость',
+  'Люмен Ритейл',
+  'Атлас Строй',
+  'Сьерра Отели',
+  'Фаундри Лабс',
 ];
 
-/* ── Pain points ────────────────────────────────────────── */
+/* ── Боли клиента ───────────────────────────────────────── */
 export type Pain = { problem: string; cost: string };
 export const pains: Pain[] = [
   {
-    problem: 'Leads wait hours for a reply',
-    cost: 'and book with whoever answered first.',
+    problem: 'Заявки ждут ответа часами',
+    cost: 'и уходят к тому, кто ответил первым.',
   },
   {
-    problem: 'Your team drowns in repetitive tickets',
-    cost: 'instead of the work that actually grows revenue.',
+    problem: 'Команда тонет в однотипных обращениях',
+    cost: 'вместо работы, которая реально растит выручку.',
   },
   {
-    problem: 'After-hours enquiries go unanswered',
-    cost: 'so demand quietly leaks out of the funnel.',
+    problem: 'Вечерние и ночные обращения остаются без ответа',
+    cost: 'и спрос тихо утекает из воронки.',
   },
   {
-    problem: 'Knowledge lives in five tools and three heads',
-    cost: 'and nothing scales past the people who hold it.',
+    problem: 'Знания разбросаны по пяти сервисам и трём головам',
+    cost: 'и ничего не масштабируется без этих людей.',
   },
 ];
 
-/* ── Transformation (before / after) ────────────────────── */
+/* ── Трансформация (до / после) ─────────────────────────── */
 export const transformation = {
   before: [
-    'Manual follow-up, missed at night and on weekends',
-    'Reps re-typing the same answers all day',
-    'No record of why a deal stalled',
-    'Hiring more people to handle more volume',
+    'Ручные касания, упущенные ночью и в выходные',
+    'Менеджеры по сто раз набирают одни и те же ответы',
+    'Нет записи, почему сделка застряла',
+    'Чтобы тянуть больше объёма — нанимаем больше людей',
   ],
   after: [
-    'Every lead answered in seconds, any hour',
-    'AI handles the repetitive 80%, people handle the rest',
-    'Every interaction logged, searchable, and improving',
-    'Volume scales without the headcount curve',
+    'Каждая заявка получает ответ за секунды, в любой час',
+    'AI берёт рутинные 80%, люди — остальное',
+    'Каждое касание залогировано, ищется и улучшается',
+    'Объём растёт без линейного роста штата',
   ],
 } as const;
 
-/* ── Process / how it works ─────────────────────────────── */
+/* ── Процесс / как это работает ─────────────────────────── */
 export type Step = { n: string; title: string; body: string; icon: LucideIcon };
 export const steps: Step[] = [
   {
     n: '01',
-    title: 'Map',
-    body: 'We audit your workflows and find where time and revenue leak. You get a prioritised automation roadmap — no jargon.',
+    title: 'Карта',
+    body: 'Разбираем ваши процессы и находим, где утекают время и деньги. Вы получаете приоритизированную дорожную карту автоматизации — без жаргона.',
     icon: Gauge,
   },
   {
     n: '02',
-    title: 'Design',
-    body: 'We architect the system around your tools and your numbers, then agree on the outcome before a line of code ships.',
+    title: 'Дизайн',
+    body: 'Проектируем систему под ваши инструменты и ваши цифры и согласуем результат до того, как напишем строчку кода.',
     icon: Boxes,
   },
   {
     n: '03',
-    title: 'Build',
-    body: 'We deploy and integrate into your stack — CRM, calendar, phone, inbox — and test against real cases until it’s reliable.',
+    title: 'Сборка',
+    body: 'Внедряем и интегрируем в ваш стек — CRM, календарь, телефония, почта — и тестируем на реальных кейсах до стабильной работы.',
     icon: Cog,
   },
   {
     n: '04',
-    title: 'Scale',
-    body: 'We monitor, tune, and expand. Your systems compound: more coverage, lower cost, better data, every month.',
+    title: 'Масштаб',
+    body: 'Мониторим, настраиваем и расширяем. Системы накапливают эффект: больше покрытие, ниже издержки, лучше данные — каждый месяц.',
     icon: LineChart,
   },
 ];
 
-/* ── Services ───────────────────────────────────────────── */
+/* ── Услуги ─────────────────────────────────────────────── */
 export type Service = {
   title: string;
   description: string;
@@ -135,37 +140,38 @@ export type Service = {
   featured?: boolean;
 };
 export const services: Service[] = [
-  { title: 'AI Agents', description: 'Autonomous agents that complete multi-step work across your tools.', icon: Bot, featured: true },
-  { title: 'AI Employees', description: 'Always-on digital teammates for sales, support, and operations.', icon: Users },
-  { title: 'CRM Automation', description: 'Enrichment, routing, and follow-up that keeps your pipeline clean.', icon: Workflow },
-  { title: 'AI Sales Systems', description: 'Qualify, nurture, and book — from first touch to closed deal.', icon: LineChart, featured: true },
-  { title: 'AI Customer Support', description: 'Resolve the repetitive 80% instantly, escalate the rest with context.', icon: Headphones },
-  { title: 'AI Voice Agents', description: 'Natural-sounding agents that answer and place calls 24/7.', icon: PhoneCall },
-  { title: 'AI Chatbots', description: 'On-brand assistants on your site that convert visitors into bookings.', icon: MessagesSquare },
-  { title: 'Process Automation', description: 'Remove the manual handoffs between your apps and teams.', icon: Cog },
-  { title: 'GPT Solutions', description: 'Custom models grounded in your data, your tone, your rules.', icon: Sparkles, featured: true },
-  { title: 'Knowledge Bases', description: 'Internal AI search so answers live in one place, not five.', icon: BookOpen },
-  { title: 'Websites & Landing Pages', description: 'Fast, conversion-built pages that match this level of polish.', icon: LayoutTemplate },
-  { title: 'API Integrations', description: 'Connect anything to anything with reliable, monitored pipelines.', icon: Plug },
-  { title: 'Dashboards', description: 'Live operational visibility your leadership will actually use.', icon: Globe },
-  { title: 'Custom Software', description: 'Bespoke tools when off-the-shelf can’t carry the workflow.', icon: Boxes },
+  { title: 'AI-агенты', description: 'Автономные агенты, выполняющие многошаговую работу в ваших сервисах.', icon: Bot, featured: true },
+  { title: 'AI-сотрудники', description: 'Цифровые коллеги без выходных для продаж, поддержки и операций.', icon: Users },
+  { title: 'Автоматизация CRM', description: 'Обогащение, маршрутизация и касания, которые держат воронку чистой.', icon: Workflow },
+  { title: 'AI-системы продаж', description: 'Квалифицируем, прогреваем и записываем — от первого касания до сделки.', icon: LineChart, featured: true },
+  { title: 'AI-поддержка клиентов', description: 'Закрываем рутинные 80% мгновенно, остальное передаём с контекстом.', icon: Headphones },
+  { title: 'Голосовые AI-агенты', description: 'Естественные агенты, которые принимают и совершают звонки 24/7.', icon: PhoneCall },
+  { title: 'AI-чат-боты', description: 'Ассистенты в фирменном стиле, превращающие посетителей в заявки.', icon: MessagesSquare },
+  { title: 'Автоматизация процессов', description: 'Убираем ручные передачи между вашими приложениями и командами.', icon: Cog },
+  { title: 'GPT-решения', description: 'Кастомные модели на ваших данных, в вашем тоне и по вашим правилам.', icon: Sparkles, featured: true },
+  { title: 'Базы знаний', description: 'Внутренний AI-поиск: ответы живут в одном месте, а не в пяти.', icon: BookOpen },
+  { title: 'Сайты и лендинги', description: 'Быстрые конверсионные страницы того же уровня качества.', icon: LayoutTemplate },
+  { title: 'API-интеграции', description: 'Соединяем что угодно с чем угодно — надёжно и под мониторингом.', icon: Plug },
+  { title: 'Дашборды', description: 'Живая операционная видимость, которой руководство реально пользуется.', icon: Globe },
+  { title: 'Кастомный софт', description: 'Решения под заказ, когда готовые продукты не тянут процесс.', icon: Boxes },
 ];
 
-/* ── Industries ─────────────────────────────────────────── */
+/* ── Индустрии ──────────────────────────────────────────── */
 export type Industry = { name: string; outcome: string; icon: LucideIcon };
 export const industries: Industry[] = [
-  { name: 'Real Estate', outcome: 'Instant lead response and viewing scheduling', icon: Home },
-  { name: 'Hotels', outcome: 'Round-the-clock booking and concierge', icon: Hotel },
-  { name: 'Medical Clinics', outcome: 'Reminders, intake, and front-desk triage', icon: Stethoscope },
-  { name: 'Construction', outcome: 'Quote intake and subcontractor coordination', icon: HardHat },
-  { name: 'Law Firms', outcome: 'Client intake and document automation', icon: Scale },
-  { name: 'Marketing Agencies', outcome: 'Reporting and client comms on autopilot', icon: Megaphone },
-  { name: 'Startups', outcome: 'Lean ops that scale without headcount', icon: Rocket },
-  { name: 'E-commerce', outcome: 'Support, recovery, and order automation', icon: ShoppingCart },
-  { name: 'SMBs', outcome: 'Enterprise leverage on a small-team budget', icon: Building2 },
+  { name: 'Недвижимость', outcome: 'Мгновенный ответ на заявку и запись на показ', icon: Home },
+  { name: 'Отели', outcome: 'Круглосуточное бронирование и консьерж', icon: Hotel },
+  { name: 'Медцентры', outcome: 'Напоминания, анкеты и приём на ресепшене', icon: Stethoscope },
+  { name: 'Строительство', outcome: 'Приём заявок на смету и координация подрядчиков', icon: HardHat },
+  { name: 'Юрфирмы', outcome: 'Приём клиентов и автоматизация документов', icon: Scale },
+  { name: 'Маркетинг-агентства', outcome: 'Отчёты и коммуникация с клиентами на автопилоте', icon: Megaphone },
+  { name: 'Стартапы', outcome: 'Лёгкие операции, что растут без раздувания штата', icon: Rocket },
+  { name: 'E-commerce', outcome: 'Поддержка, возвраты и автоматизация заказов', icon: ShoppingCart },
+  { name: 'Малый бизнес', outcome: 'Корпоративный рычаг на бюджете небольшой команды', icon: Building2 },
 ];
 
-/* ── Case studies ───────────────────────────────────────── */
+/* ── Кейсы ──────────────────────────────────────────────── */
+/* [ЗАМЕНИТЬ] на реальные кейсы. Цифры подтверждайте с клиентом. */
 export type CaseStudy = {
   industry: string;
   title: string;
@@ -175,58 +181,59 @@ export type CaseStudy = {
 };
 export const caseStudies: CaseStudy[] = [
   {
-    industry: 'Real Estate',
-    title: 'A 30-agent brokerage stopped losing night-time leads',
+    industry: 'Недвижимость',
+    title: 'Агентство из 30 риелторов перестало терять ночные заявки',
     metric: '+38%',
-    metricLabel: 'booked viewings',
-    body: 'An AI voice and chat agent now answers every enquiry in seconds, qualifies intent, and books viewings straight into agent calendars.',
+    metricLabel: 'записей на показ',
+    body: 'Голосовой и чат-агент отвечает на каждую заявку за секунды, квалифицирует интерес и записывает показы прямо в календари риелторов.',
   },
   {
-    industry: 'Medical',
-    title: 'A multi-site clinic cut no-shows and front-desk load',
+    industry: 'Медицина',
+    title: 'Сеть клиник снизила неявки и нагрузку на ресепшен',
     metric: '−61%',
-    metricLabel: 'no-show rate',
-    body: 'Automated intake, reminders, and rescheduling freed the front desk for patients in the room instead of the phone.',
+    metricLabel: 'неявок',
+    body: 'Автоматические анкеты, напоминания и перенос записей освободили ресепшен для пациентов в кабинете, а не на телефоне.',
   },
   {
     industry: 'E-commerce',
-    title: 'A retailer resolved most tickets before a human looked',
+    title: 'Ритейлер закрывает большинство обращений до участия человека',
     metric: '74%',
-    metricLabel: 'tickets auto-resolved',
-    body: 'A support agent grounded in order data and policy now handles returns, tracking, and FAQs instantly — humans handle the edge cases.',
+    metricLabel: 'обращений закрыто автоматически',
+    body: 'Агент поддержки на данных о заказах и регламентах мгновенно решает возвраты, трекинг и частые вопросы — люди берут лишь сложные случаи.',
   },
 ];
 
-/* ── Testimonials ───────────────────────────────────────── */
+/* ── Отзывы ─────────────────────────────────────────────── */
+/* [ЗАМЕНИТЬ] на реальные отзывы с настоящими именами и должностями. */
 export type Testimonial = { quote: string; name: string; role: string };
 export const testimonials: Testimonial[] = [
   {
     quote:
-      'We replaced an entire shift of manual follow-up. Response times went from hours to seconds and our close rate followed.',
-    name: 'Daniel Reyes',
-    role: 'Managing Partner, Harbor Realty',
+      'Мы заменили целую смену ручных касаний. Время ответа упало с часов до секунд, а конверсия пошла следом.',
+    name: 'Даниил Рожков',
+    role: 'Управляющий партнёр, Гавань Недвижимость',
   },
   {
     quote:
-      'It paid for itself in the first month. The team finally works on patients, not the phone.',
-    name: 'Dr. Lena Whitfield',
-    role: 'Director, Meridian Clinics',
+      'Окупилось в первый же месяц. Команда наконец занимается пациентами, а не телефоном.',
+    name: 'Елена Уитфилд',
+    role: 'Директор, Клиники Меридиан',
   },
   {
     quote:
-      'Axon understood the business before they touched the tech. That’s rare. The system just works.',
-    name: 'Marcus Hale',
-    role: 'COO, Lumen Retail',
+      'Axon разобрались в бизнесе до того, как тронули технологии. Это редкость. Система просто работает.',
+    name: 'Марк Хейл',
+    role: 'Операционный директор, Люмен Ритейл',
   },
   {
     quote:
-      'Clean, fast, and exactly what they promised. It feels like we hired a senior ops team overnight.',
-    name: 'Sofia Brandt',
-    role: 'Founder, Foundry Labs',
+      'Чисто, быстро и ровно как обещали. Будто за ночь наняли сильную операционную команду.',
+    name: 'София Брандт',
+    role: 'Основатель, Фаундри Лабс',
   },
 ];
 
-/* ── Technology ─────────────────────────────────────────── */
+/* ── Технологии ─────────────────────────────────────────── */
 export const technologies: string[] = [
   'OpenAI',
   'Anthropic',
@@ -236,8 +243,8 @@ export const technologies: string[] = [
   'Supabase',
   'n8n',
   'Zapier',
-  'HubSpot',
-  'Salesforce',
+  'amoCRM',
+  'Bitrix24',
   'Postgres',
   'Pinecone',
 ];
@@ -246,35 +253,51 @@ export const technologies: string[] = [
 export type Faq = { q: string; a: string };
 export const faqs: Faq[] = [
   {
-    q: 'How fast can we get a system live?',
-    a: 'Most clients have their first system in production within 9 days of kickoff. We scope tightly, ship a working slice early, then expand from there.',
+    q: 'Как быстро можно запустить систему?',
+    a: 'Чаще всего первая система работает в продакшене уже через 9 дней после старта. Мы узко режем объём, быстро показываем рабочий кусок и расширяемся от него.',
   },
   {
-    q: 'Will this work with the tools we already use?',
-    a: 'Yes. We integrate with your existing CRM, calendar, phone, and inbox rather than replacing them. If it has an API, we can connect it.',
+    q: 'Будет ли это работать с нашими текущими инструментами?',
+    a: 'Да. Мы интегрируемся с вашими CRM, календарём, телефонией и почтой, а не заменяем их. Если есть API — мы подключимся.',
   },
   {
-    q: 'Is it actually reliable, or will it go off-script?',
-    a: 'Every agent is grounded in your data and policy with guardrails and human-escalation paths. We test against real cases before anything touches a customer.',
+    q: 'Это реально надёжно или система пойдёт «не по сценарию»?',
+    a: 'Каждый агент работает на ваших данных и регламентах, с ограничителями и путями эскалации на человека. Перед тем как что-то коснётся клиента, мы тестируем на реальных кейсах.',
   },
   {
-    q: 'What does it cost?',
-    a: 'Projects are scoped to outcomes, not hours. We size the investment to the cost or revenue you’re recovering, and you’ll see the model before you commit.',
+    q: 'Сколько это стоит?',
+    a: 'Проекты считаются под результат, а не под часы. Размер вложения соизмеряем с издержками или выручкой, которые вы возвращаете, и вы видите модель до старта.',
   },
   {
-    q: 'Do you only build for technical companies?',
-    a: 'No. Most of our clients are owner-led businesses — clinics, brokerages, hotels, agencies. You bring the operations; we handle the engineering.',
+    q: 'Вы работаете только с техническими компаниями?',
+    a: 'Нет. Большинство наших клиентов — бизнесы под управлением собственника: клиники, агентства, отели. С вас — операции, с нас — инженерия.',
   },
   {
-    q: 'What happens after launch?',
-    a: 'We monitor and tune continuously. Your systems improve with usage, and we expand coverage as you see results. You’re never left with an unsupported black box.',
+    q: 'Что происходит после запуска?',
+    a: 'Мы непрерывно мониторим и настраиваем. Системы улучшаются с использованием, а покрытие растёт по мере результата. Вы не остаётесь с неподдерживаемым «чёрным ящиком».',
   },
 ];
 
-/* ── Final CTA ──────────────────────────────────────────── */
+/* ── Финальный CTA ──────────────────────────────────────── */
 export const finalCta = {
-  title: 'Stop paying people to do what AI can.',
+  title: 'Перестаньте платить людям за то, что может делать AI.',
   subtitle:
-    'Book a strategy session. We’ll map where automation moves your numbers — and you’ll leave with a plan whether or not we work together.',
-  cta: 'Book a strategy session',
+    'Запишитесь на стратегическую сессию. Мы покажем, где автоматизация двигает ваши цифры — и вы уйдёте с планом, даже если мы не начнём работать вместе.',
+  cta: 'Записаться на стратегическую сессию',
+} as const;
+
+/* ── Lead-magnet (гайд за email) ────────────────────────── */
+export const leadMagnet = {
+  eyebrow: 'Бесплатный гайд',
+  title: '5 процессов, которые малый бизнес автоматизирует первыми',
+  subtitle:
+    'Короткий разбор: где автоматизация окупается быстрее всего и как оценить эффект до внедрения. Без воды — на почту за минуту.',
+  bullets: [
+    'С каких процессов начать и почему',
+    'Как посчитать экономию заранее',
+    'Частые ошибки на старте автоматизации',
+  ],
+  cta: 'Получить гайд',
+  /** Файл лежит в /public. */
+  file: '/axon-guide.pdf',
 } as const;

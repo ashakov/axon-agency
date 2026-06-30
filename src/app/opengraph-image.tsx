@@ -47,10 +47,10 @@ export default function Og() {
               maxWidth: 920,
             }}
           >
-            AI systems that run your business.
+            AI-системы, которые ведут ваш бизнес.
           </div>
           <div style={{ color: '#9fb0bd', fontSize: 30, maxWidth: 820 }}>
-            More revenue. Lower cost. Less repetitive work.
+            Больше выручки. Ниже издержки. Меньше рутины.
           </div>
         </div>
       </div>

@@ -7,10 +7,10 @@ export function CaseStudies() {
   return (
     <Section id="work" labelledBy="work-title">
       <SectionHeader
-        eyebrow="Selected work"
+        eyebrow="Избранные кейсы"
         id="work-title"
-        title="Outcomes we can put a number on."
-        lead="A few representative engagements. Figures are anonymised at client request."
+        title="Результаты, которые можно выразить цифрой."
+        lead="Несколько показательных проектов. Цифры обезличены по просьбе клиентов."
       />
       <Reveal group className="mt-14 grid gap-6 lg:grid-cols-3">
         {caseStudies.map((c) => (

@@ -6,9 +6,9 @@ export function Testimonials() {
   return (
     <Section id="testimonials" labelledBy="testimonials-title" className="bg-bg-elevated/40">
       <SectionHeader
-        eyebrow="In their words"
+        eyebrow="Их словами"
         id="testimonials-title"
-        title="Operators who stopped doing the work twice."
+        title="Те, кто перестал делать работу дважды."
       />
       <Reveal group className="mt-14 grid gap-6 md:grid-cols-2">
         {testimonials.map((t) => (

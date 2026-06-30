@@ -4,10 +4,10 @@ import { trustedBy } from '@/lib/content';
 
 export function LogoCloud() {
   return (
-    <section aria-label="Trusted by" className="border-y border-border bg-bg-elevated/40 py-10">
+    <section aria-label="Нам доверяют" className="border-y border-border bg-bg-elevated/40 py-10">
       <Container className="flex flex-col items-center gap-6">
         <p className="text-xs uppercase tracking-[0.18em] text-subtle">
-          Operating quietly inside teams like these
+          Тихо работаем внутри команд вроде этих
         </p>
         <Marquee items={trustedBy} className="w-full" />
       </Container>

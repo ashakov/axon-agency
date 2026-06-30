@@ -20,7 +20,7 @@ type Field = {
 const FIELDS: Field[] = [
   {
     key: 'employees',
-    label: 'People doing repetitive work',
+    label: 'Сотрудников на рутинной работе',
     min: 1,
     max: 50,
     step: 1,
@@ -28,19 +28,19 @@ const FIELDS: Field[] = [
   },
   {
     key: 'hourlyCost',
-    label: 'Average fully-loaded hourly cost',
-    min: 15,
-    max: 120,
-    step: 5,
-    format: (v) => `$${v}`,
+    label: 'Средняя стоимость часа сотрудника',
+    min: 300,
+    max: 5000,
+    step: 100,
+    format: (v) => `${formatNumber(v)} ₽`,
   },
   {
     key: 'hoursWasted',
-    label: 'Hours/week each loses to manual tasks',
+    label: 'Часов в неделю на ручные задачи у каждого',
     min: 2,
     max: 30,
     step: 1,
-    format: (v) => `${v}h`,
+    format: (v) => `${v} ч`,
   },
 ];
 
@@ -52,7 +52,7 @@ export function RoiCalculator() {
   const sliderId = useId();
   const [values, setValues] = useState({
     employees: 6,
-    hourlyCost: 45,
+    hourlyCost: 800,
     hoursWasted: 12,
   });
 
@@ -68,10 +68,10 @@ export function RoiCalculator() {
   return (
     <Section id="roi" labelledBy="roi-title">
       <SectionHeader
-        eyebrow="ROI calculator"
+        eyebrow="ROI-калькулятор"
         id="roi-title"
-        title="See what manual work is costing you."
-        lead="A conservative estimate based on recovering 65% of repetitive hours. Move the sliders."
+        title="Посмотрите, во что обходится ручная работа."
+        lead="Консервативная оценка: возвращаем 65% рутинных часов. Подвигайте ползунки."
       />
 
       <div className="mt-14 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
@@ -124,23 +124,23 @@ export function RoiCalculator() {
         >
           <div>
             <p className="text-xs uppercase tracking-[0.18em] text-accent">
-              Estimated annual saving
+              Оценка экономии в год
             </p>
             <p className="mt-4 font-mono text-5xl font-semibold tracking-tight text-fg sm:text-6xl">
               {formatCurrencyCompact(result.annualSavings)}
             </p>
             <p className="mt-4 text-muted">
-              That&apos;s about{' '}
+              Это около{' '}
               <span className="font-medium text-fg">
-                {formatNumber(result.annualHours)} hours
+                {formatNumber(result.annualHours)} часов
               </span>{' '}
-              returned to your team every year — time they can spend growing the
-              business instead of maintaining it.
+              , которые команда возвращает себе каждый год — время на рост
+              бизнеса вместо его обслуживания.
             </p>
           </div>
           <Button asChild size="lg" className="mt-8 w-full sm:w-fit">
             <Link href="/book">
-              Turn this into a plan
+              Превратить в план
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
@@ -148,8 +148,8 @@ export function RoiCalculator() {
       </div>
 
       <p className="mt-6 max-w-prose text-xs text-subtle">
-        Estimates are illustrative and depend on your workflows. We validate the
-        real number with you during the strategy session.
+        Оценки иллюстративны и зависят от ваших процессов. Точную цифру мы
+        считаем с вами на стратегической сессии.
       </p>
     </Section>
   );

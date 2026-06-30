@@ -130,9 +130,9 @@ is routed to `NEXT_PUBLIC_CALENDLY_URL` to pick a time.
 
 ## Documented assumptions
 
-1. **Language is English.** The repo in this folder contains Russian-language
-   business material; the brief and design references were English, so the site
-   ships in English. The token + content split makes localization straightforward.
+1. **Language is Russian.** The site ships in Russian (ROI calculator in ₽), to
+   match the target market. All copy lives in `src/lib/content.ts` + `site.ts`,
+   so re-adding English or going bilingual is a content change, not a rewrite.
 2. **Brand "Axon"** and all sample names, logos, testimonials, case-study
    figures, and the trusted-by list are **placeholders** — replace before launch.
 3. **CTA = qualify-then-Calendly.** Per the brief, the form captures a lead and
@@ -148,3 +148,28 @@ is routed to `NEXT_PUBLIC_CALENDLY_URL` to pick a time.
 
 Optimized for Vercel: push the repo, set the env vars, deploy. Vercel Analytics
 and Speed Insights are already wired in `layout.tsx`.
+
+---
+
+## 🇷🇺 Что заменить перед запуском (важно)
+
+Сайт переведён на русский, ROI-калькулятор считает в рублях. Перед публикацией замените демо-данные на реальные — иначе фейковые цифры работают против доверия:
+
+| Где | Файл | Что заменить |
+| --- | --- | --- |
+| Логотипы клиентов | `src/lib/content.ts` → `trustedBy` | Реальные названия/логотипы |
+| Кейсы | `src/lib/content.ts` → `caseStudies` | Настоящие проекты и цифры (подтвердите с клиентом) |
+| Отзывы | `src/lib/content.ts` → `testimonials` | Реальные имена, должности, цитаты |
+| Контакты/бренд | `src/lib/site.ts` | `name`, `email`, `social`, `url` |
+| Запись | `.env.local` → `NEXT_PUBLIC_CALENDLY_URL` | Ваша ссылка Calendly |
+| Заявки с формы | `src/app/actions/book.ts` | Подключить CRM/почту в точке интеграции |
+| Подписка на гайд | `src/app/actions/lead-magnet.ts` | Подключить рассылку в точке интеграции |
+| PDF-гайд | `public/axon-guide.pdf` | При желании — свой брендированный гайд |
+
+Плейсхолдеры помечены в коде комментарием `[ЗАМЕНИТЬ]`.
+
+### Lead-magnet
+Секция «Бесплатный гайд» (`src/components/sections/LeadMagnet.tsx`) собирает email в обмен на PDF `public/axon-guide.pdf`. После подписки появляется кнопка скачивания. Текст гайда — в `src/lib/content.ts` → `leadMagnet`.
+
+### Язык
+Весь текст лежит в `src/lib/content.ts` и `src/lib/site.ts` + строки в компонентах. Чтобы вернуть английскую версию или сделать двуязычную — меняется контент, не архитектура.

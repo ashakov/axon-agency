@@ -7,10 +7,10 @@ export function Technology() {
     <Section id="technology" labelledBy="technology-title">
       <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-20">
         <SectionHeader
-          eyebrow="Technology"
+          eyebrow="Технологии"
           id="technology-title"
-          title="Best-in-class models. Boringly reliable plumbing."
-          lead="We pick the right tool for the outcome and own the integration end to end. You get the upside of frontier AI without the operational risk."
+          title="Лучшие модели. Скучно-надёжная инженерия."
+          lead="Подбираем инструмент под результат и владеем интеграцией от и до. Вы получаете передовой AI без операционного риска."
         />
         <Reveal group className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3">
           {technologies.map((t) => (

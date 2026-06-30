@@ -17,7 +17,7 @@ export function organizationJsonLd() {
       '@type': 'ContactPoint',
       contactType: 'sales',
       email: site.email,
-      availableLanguage: ['English'],
+      availableLanguage: ['Russian'],
     },
   };
 }
@@ -30,8 +30,8 @@ export function serviceJsonLd() {
     name: site.legalName,
     url: site.url,
     description: site.description,
-    areaServed: 'Worldwide',
-    serviceType: 'AI automation and software development',
+    areaServed: 'Россия и СНГ',
+    serviceType: 'AI-автоматизация и разработка ПО',
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'AI Automation Services',

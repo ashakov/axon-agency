@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]): string {
 
 /** Format a number with thin-space grouping (locale-stable for SSR). */
 export function formatNumber(value: number): string {
-  return new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(
+  return new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 0 }).format(
     value,
   );
 }
@@ -20,9 +20,9 @@ export function clamp(value: number, min: number, max: number): number {
 
 /** Format a value as compact USD (e.g. $128k). */
 export function formatCurrencyCompact(value: number): string {
-  return new Intl.NumberFormat('en-US', {
+  return new Intl.NumberFormat('ru-RU', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'RUB',
     notation: 'compact',
     maximumFractionDigits: 1,
   }).format(value);

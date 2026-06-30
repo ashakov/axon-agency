@@ -6,10 +6,10 @@ export function Industries() {
   return (
     <Section id="industries" labelledBy="industries-title" className="bg-bg-elevated/40">
       <SectionHeader
-        eyebrow="Industries"
+        eyebrow="Индустрии"
         id="industries-title"
-        title="Built around how your business actually runs."
-        lead="We've automated the operations of teams across these industries. Your edge cases are probably ones we've seen."
+        title="Под то, как реально устроен ваш бизнес."
+        lead="Мы автоматизировали операции команд в этих индустриях. Ваши «особые случаи» мы, скорее всего, уже видели."
       />
       <Reveal group className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {industries.map((ind) => (

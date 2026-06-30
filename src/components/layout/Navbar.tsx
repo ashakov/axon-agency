@@ -38,12 +38,12 @@ export function Navbar() {
     >
       <nav
         className="container-content flex h-16 items-center justify-between"
-        aria-label="Primary"
+        aria-label="Основная навигация"
       >
         <Link
           href="/"
           className="rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          aria-label={`${site.name} home`}
+          aria-label={`${site.name}, на главную`}
         >
           <Logo />
         </Link>
@@ -63,10 +63,10 @@ export function Navbar() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <Button asChild variant="ghost" size="sm">
-            <Link href="/book">Book a call</Link>
+            <Link href="/book">Заказать звонок</Link>
           </Button>
           <Button asChild size="sm">
-            <Link href="/book">Get started</Link>
+            <Link href="/book">Начать</Link>
           </Button>
         </div>
 
@@ -75,7 +75,7 @@ export function Navbar() {
           className="rounded-md p-2 text-fg lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
-          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-label={open ? 'Закрыть меню' : 'Открыть меню'}
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -101,7 +101,7 @@ export function Navbar() {
           ))}
           <Button asChild size="lg" className="mt-3">
             <Link href="/book" onClick={() => setOpen(false)}>
-              Book a strategy session
+              Записаться на сессию
             </Link>
           </Button>
         </div>

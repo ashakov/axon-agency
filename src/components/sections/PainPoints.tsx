@@ -7,10 +7,10 @@ export function PainPoints() {
     <Section id="pain" labelledBy="pain-title" className="bg-bg-elevated/40">
       <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
         <SectionHeader
-          eyebrow="The real cost"
+          eyebrow="Реальная цена"
           id="pain-title"
-          title="Every manual step is a quiet leak."
-          lead="Most businesses don't lose to competitors. They lose to slow replies, dropped follow-ups, and work that never scales past the people doing it."
+          title="Каждый ручной шаг — тихая утечка."
+          lead="Большинство бизнесов проигрывают не конкурентам, а медленным ответам, забытым касаниям и работе, которая не масштабируется без конкретных людей."
         />
         <Reveal group as="ul" className="flex flex-col">
           {pains.map((p, i) => (

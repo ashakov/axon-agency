@@ -24,7 +24,7 @@ export function StickyCta() {
         href="/book"
         className="flex h-14 items-center justify-center gap-2 rounded-full bg-accent px-6 text-sm font-semibold text-accent-fg shadow-glow"
       >
-        Book a strategy session
+        Записаться на сессию
         <ArrowRight className="h-4 w-4" />
       </Link>
     </div>

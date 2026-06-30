@@ -42,7 +42,7 @@ export function Hero() {
           className="max-w-3xl"
         >
           <motion.div variants={item}>
-            <Badge dot>Now booking strategy sessions for Q3</Badge>
+            <Badge dot>Открыта запись на стратегические сессии</Badge>
           </motion.div>
 
           <motion.h1
@@ -83,7 +83,7 @@ export function Hero() {
           </motion.div>
 
           <motion.p variants={item} className="mt-5 text-sm text-subtle">
-            No pitch. A working plan you can keep — even if we never talk again.
+            Без продажи. Рабочий план останется у вас — даже если мы не продолжим.
           </motion.p>
         </motion.div>
 

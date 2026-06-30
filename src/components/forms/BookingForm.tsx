@@ -18,9 +18,9 @@ import { cn } from '@/lib/utils';
 
 type FieldName = keyof BookingInput;
 const STEPS: { title: string; fields: FieldName[] }[] = [
-  { title: 'About you', fields: ['name', 'email', 'company'] },
-  { title: 'Your business', fields: ['companySize', 'goal'] },
-  { title: 'Anything else', fields: ['details'] },
+  { title: 'О вас', fields: ['name', 'email', 'company'] },
+  { title: 'Ваш бизнес', fields: ['companySize', 'goal'] },
+  { title: 'Детали', fields: ['details'] },
 ];
 
 export function BookingForm() {
@@ -76,7 +76,7 @@ export function BookingForm() {
       setServerError(
         res.status === 'error'
           ? res.message
-          : 'Something went wrong. Please try again.',
+          : 'Что-то пошло не так. Попробуйте ещё раз.',
       );
     }
   });
@@ -87,13 +87,13 @@ export function BookingForm() {
         <span className="flex h-14 w-14 items-center justify-center rounded-full bg-accent/15 text-accent">
           <CalendarCheck className="h-7 w-7" aria-hidden="true" />
         </span>
-        <h2 className="text-display-sm">You&apos;re all set.</h2>
+        <h2 className="text-display-sm">Готово.</h2>
         <p className="max-w-sm text-muted">
-          We&apos;ve got your details. We&apos;re sending you to pick a time now —
-          if it doesn&apos;t open automatically, use the button below.
+          Мы получили ваши данные. Сейчас откроем выбор времени — если он
+          не откроется автоматически, нажмите кнопку ниже.
         </p>
         <Button asChild size="lg">
-          <a href={site.calendlyUrl}>Choose your time</a>
+          <a href={site.calendlyUrl}>Выбрать время</a>
         </Button>
       </div>
     );
@@ -114,12 +114,12 @@ export function BookingForm() {
         ))}
       </div>
       <p className="mb-6 text-sm text-subtle">
-        Step {step + 1} of {STEPS.length} · {STEPS[step]?.title}
+        Шаг {step + 1} из {STEPS.length} · {STEPS[step]?.title}
       </p>
 
       {/* Honeypot (visually hidden, off the a11y tree) */}
       <div className="sr-only" aria-hidden="true">
-        <label htmlFor="website">Leave this empty</label>
+        <label htmlFor="website">Оставьте поле пустым</label>
         <input id="website" type="text" tabIndex={-1} autoComplete="off" {...register('website')} />
       </div>
 
@@ -134,16 +134,16 @@ export function BookingForm() {
         >
           {step === 0 && (
             <>
-              <TextField label="Full name" error={errors.name?.message} {...register('name')} autoComplete="name" />
-              <TextField label="Work email" type="email" error={errors.email?.message} {...register('email')} autoComplete="email" />
-              <TextField label="Company" error={errors.company?.message} {...register('company')} autoComplete="organization" />
+              <TextField label="Имя" error={errors.name?.message} {...register('name')} autoComplete="name" />
+              <TextField label="Рабочая почта" type="email" error={errors.email?.message} {...register('email')} autoComplete="email" />
+              <TextField label="Компания" error={errors.company?.message} {...register('company')} autoComplete="organization" />
             </>
           )}
 
           {step === 1 && (
             <>
               <ChipGroup
-                label="Company size"
+                label="Размер компании"
                 name="companySize"
                 options={COMPANY_SIZES}
                 selected={companySize}
@@ -151,7 +151,7 @@ export function BookingForm() {
                 register={register('companySize')}
               />
               <ChipGroup
-                label="What's the priority?"
+                label="Что в приоритете?"
                 name="goal"
                 options={GOALS}
                 selected={goal}
@@ -164,13 +164,13 @@ export function BookingForm() {
           {step === 2 && (
             <div className="flex flex-col gap-2">
               <label htmlFor="details" className="text-sm font-medium text-fg">
-                Anything we should know? <span className="text-subtle">(optional)</span>
+                Что нам важно знать? <span className="text-subtle">(необязательно)</span>
               </label>
               <textarea
                 id="details"
                 rows={5}
                 {...register('details')}
-                placeholder="Tools you use, the workflow that's eating time, a rough timeline…"
+                placeholder="Какие сервисы используете, какой процесс съедает время, примерные сроки…"
                 className="w-full resize-none rounded-lg border border-border bg-bg-elevated px-4 py-3 text-fg placeholder:text-subtle focus-visible:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
@@ -188,7 +188,7 @@ export function BookingForm() {
         {step > 0 ? (
           <Button type="button" variant="ghost" onClick={back}>
             <ArrowLeft className="h-4 w-4" />
-            Back
+            Назад
           </Button>
         ) : (
           <span />
@@ -196,7 +196,7 @@ export function BookingForm() {
 
         {step < STEPS.length - 1 ? (
           <Button type="button" onClick={next}>
-            Continue
+            Далее
             <ArrowRight className="h-4 w-4" />
           </Button>
         ) : (
@@ -204,11 +204,11 @@ export function BookingForm() {
             {submitting ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
-                Booking…
+                Отправляем…
               </>
             ) : (
               <>
-                Request my session
+                Оставить заявку
                 <Check className="h-4 w-4" />
               </>
             )}

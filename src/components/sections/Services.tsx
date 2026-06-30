@@ -7,10 +7,10 @@ export function Services() {
   return (
     <Section id="services" labelledBy="services-title">
       <SectionHeader
-        eyebrow="Services"
+        eyebrow="Услуги"
         id="services-title"
-        title="One studio for every system you need."
-        lead="From a single AI agent to a full operational platform — designed, built, and maintained in-house."
+        title="Одна студия для всех систем, что вам нужны."
+        lead="От одного AI-агента до полной операционной платформы — проектируем, строим и сопровождаем сами."
       />
       <Reveal
         group
@@ -31,7 +31,7 @@ export function Services() {
               <p className="mt-2 text-sm leading-relaxed text-muted">{s.description}</p>
               {s.featured ? (
                 <span className="absolute right-5 top-5 text-[0.625rem] font-medium uppercase tracking-wider text-accent">
-                  Popular
+                  Популярно
                 </span>
               ) : null}
             </article>

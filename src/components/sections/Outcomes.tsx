@@ -5,18 +5,18 @@ import { Reveal, RevealItem } from '@/components/ui/Reveal';
 const pillars = [
   {
     icon: TrendingUp,
-    title: 'Grow revenue',
-    body: 'Capture every lead, respond in seconds, and follow up forever. Demand stops leaking out of your funnel.',
+    title: 'Растить выручку',
+    body: 'Ловим каждую заявку, отвечаем за секунды и догреваем без конца. Спрос перестаёт утекать из воронки.',
   },
   {
     icon: Banknote,
-    title: 'Cut cost',
-    body: 'Automate the repetitive 80% of operations. Handle more volume without the linear rise in headcount.',
+    title: 'Снижать издержки',
+    body: 'Автоматизируем рутинные 80% операций. Берём больше объёма без линейного роста штата.',
   },
   {
     icon: Clock,
-    title: 'Reclaim time',
-    body: 'Give your team back the hours lost to manual work, so they focus on what actually moves the business.',
+    title: 'Возвращать время',
+    body: 'Возвращаем команде часы, потерянные на ручной работе, чтобы они занимались тем, что двигает бизнес.',
   },
 ];
 
@@ -24,10 +24,10 @@ export function Outcomes() {
   return (
     <Section id="outcomes" labelledBy="outcomes-title">
       <SectionHeader
-        eyebrow="Business outcomes"
+        eyebrow="Бизнес-результаты"
         id="outcomes-title"
-        title="Three numbers your leadership cares about."
-        lead="We don't sell technology. We sell what it does to your P&L."
+        title="Три цифры, которые волнуют ваше руководство."
+        lead="Мы продаём не технологии. Мы продаём то, что они делают с вашим P&L."
       />
       <Reveal group className="mt-14 grid gap-6 md:grid-cols-3">
         {pillars.map((p) => (

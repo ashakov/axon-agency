@@ -20,9 +20,9 @@ export function Footer() {
             </a>
           </div>
 
-          <nav aria-label="Site" className="flex flex-col gap-3">
+          <nav aria-label="Навигация" className="flex flex-col gap-3">
             <h2 className="text-xs font-medium uppercase tracking-wider text-subtle">
-              Navigate
+              Разделы
             </h2>
             {navLinks.map((l) => (
               <Link
@@ -37,7 +37,7 @@ export function Footer() {
 
           <nav aria-label="Services" className="flex flex-col gap-3">
             <h2 className="text-xs font-medium uppercase tracking-wider text-subtle">
-              Services
+              Услуги
             </h2>
             {services.slice(0, 6).map((s) => (
               <Link
@@ -52,7 +52,7 @@ export function Footer() {
 
           <div className="flex flex-col gap-3">
             <h2 className="text-xs font-medium uppercase tracking-wider text-subtle">
-              Company
+              Компания
             </h2>
             <a href={site.social.linkedin} className="text-sm text-muted transition-colors hover:text-fg" rel="noopener noreferrer" target="_blank">
               LinkedIn
@@ -61,16 +61,16 @@ export function Footer() {
               X / Twitter
             </a>
             <Link href="/book" className="text-sm text-muted transition-colors hover:text-fg">
-              Book a session
+              Записаться
             </Link>
           </div>
         </div>
 
         <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-border pt-8 text-sm text-subtle sm:flex-row sm:items-center">
           <p>
-            &copy; {year} {site.legalName}. All rights reserved.
+            &copy; {year} {site.legalName}. Все права защищены.
           </p>
-          <p className="font-mono text-xs">Built for outcomes, not demos.</p>
+          <p className="font-mono text-xs">Делаем результат, а не демо.</p>
         </div>
       </div>
     </footer>

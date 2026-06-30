@@ -9,22 +9,22 @@ export const COMPANY_SIZES = [
 ] as const;
 
 export const GOALS = [
-  'Grow revenue / capture more leads',
-  'Cut operational cost',
-  'Automate customer support',
-  'Build a custom AI system',
-  'Not sure yet — need direction',
+  'Растить выручку / ловить больше заявок',
+  'Снизить операционные издержки',
+  'Автоматизировать поддержку клиентов',
+  'Построить кастомную AI-систему',
+  'Пока не уверен — нужен совет',
 ] as const;
 
 export const bookingSchema = z.object({
-  name: z.string().trim().min(2, 'Please enter your name').max(80),
-  email: z.string().trim().email('Enter a valid work email'),
-  company: z.string().trim().min(2, 'Tell us your company').max(120),
+  name: z.string().trim().min(2, 'Укажите ваше имя').max(80),
+  email: z.string().trim().email('Укажите корректную почту'),
+  company: z.string().trim().min(2, 'Укажите компанию').max(120),
   companySize: z.enum(COMPANY_SIZES, {
-    errorMap: () => ({ message: 'Select a company size' }),
+    errorMap: () => ({ message: 'Выберите размер компании' }),
   }),
   goal: z.enum(GOALS, {
-    errorMap: () => ({ message: 'Pick the closest goal' }),
+    errorMap: () => ({ message: 'Выберите ближайшую цель' }),
   }),
   details: z.string().trim().max(800).optional().or(z.literal('')),
   // Honeypot — must stay empty (bots fill it).

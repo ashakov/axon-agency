@@ -12,10 +12,10 @@ export function Faq() {
     <Section id="faq" labelledBy="faq-title" className="bg-bg-elevated/40">
       <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <SectionHeader
-          eyebrow="Questions"
+          eyebrow="Вопросы"
           id="faq-title"
-          title="The things owners ask before booking."
-          lead="Still unsure? A strategy session answers the rest, with zero obligation."
+          title="Что собственники спрашивают перед записью."
+          lead="Остались сомнения? Стратегическая сессия ответит на остальное — без обязательств."
         />
         <Accordion type="single" collapsible className="w-full">
           {faqs.map((f, i) => (

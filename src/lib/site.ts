@@ -1,16 +1,16 @@
-/** Centralised brand + site configuration. Rename the brand in one place. */
+/** Центральная конфигурация бренда и сайта. Переименование — в одном месте. */
 export const site = {
   name: 'Axon',
   legalName: 'Axon Automation',
-  tagline: 'AI systems that run your business.',
+  tagline: 'AI-системы, которые ведут ваш бизнес.',
   description:
-    'Axon designs and deploys AI systems that grow revenue, cut operating cost, and remove repetitive work — built for businesses that want outcomes, not experiments.',
+    'Axon проектирует и внедряет AI-системы, которые растят выручку, снижают издержки и убирают рутину — для бизнеса, которому нужен результат, а не эксперименты.',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://axon.agency',
   calendlyUrl:
     process.env.NEXT_PUBLIC_CALENDLY_URL ??
     'https://calendly.com/axon/strategy-session',
   email: 'hello@axon.agency',
-  locale: 'en_US',
+  locale: 'ru_RU',
   founded: '2023',
   social: {
     linkedin: 'https://www.linkedin.com/company/axon-automation',
@@ -21,10 +21,10 @@ export const site = {
 export type NavLink = { label: string; href: string };
 
 export const navLinks: NavLink[] = [
-  { label: 'Services', href: '#services' },
-  { label: 'How it works', href: '#process' },
-  { label: 'Industries', href: '#industries' },
+  { label: 'Услуги', href: '#services' },
+  { label: 'Как работаем', href: '#process' },
+  { label: 'Индустрии', href: '#industries' },
   { label: 'ROI', href: '#roi' },
-  { label: 'Work', href: '#work' },
+  { label: 'Кейсы', href: '#work' },
   { label: 'FAQ', href: '#faq' },
 ];

@@ -6,16 +6,16 @@ import { Logo } from '@/components/layout/Logo';
 import { site } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Book a strategy session',
+  title: 'Запись на стратегическую сессию',
   description:
-    'Book a free strategy session with Axon. We map where AI automation moves your revenue and cost — and you leave with a plan, with zero obligation.',
+    'Бесплатная стратегическая сессия с Axon. Покажем, где AI-автоматизация двигает вашу выручку и издержки — и вы уйдёте с планом, без обязательств.',
   alternates: { canonical: '/book' },
 };
 
 const reassurances = [
-  { icon: Clock, text: '30 minutes. No slide deck, no hard sell.' },
-  { icon: Sparkles, text: 'A prioritised automation plan you keep either way.' },
-  { icon: ShieldCheck, text: 'Your details stay private. Never shared or sold.' },
+  { icon: Clock, text: '30 минут. Без презентаций и навязывания.' },
+  { icon: Sparkles, text: 'Приоритизированный план автоматизации — он останется у вас.' },
+  { icon: ShieldCheck, text: 'Ваши данные приватны. Мы их не передаём и не продаём.' },
 ];
 
 export default function BookPage() {
@@ -31,7 +31,7 @@ export default function BookPage() {
           className="inline-flex items-center gap-2 rounded-md text-sm text-muted transition-colors hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to home
+          На главную
         </Link>
       </div>
 
@@ -39,11 +39,11 @@ export default function BookPage() {
         <div className="lg:sticky lg:top-24">
           <Logo />
           <h1 className="mt-8 text-display-md text-gradient">
-            Let&apos;s find where AI moves your numbers.
+            Найдём, где AI двигает ваши цифры.
           </h1>
           <p className="mt-5 max-w-md text-lead text-muted">
-            Tell us a little about your business. We&apos;ll come to the call with
-            a point of view, not a pitch.
+            Расскажите немного о бизнесе. Мы придём на звонок с позицией,
+            а не с презентацией.
           </p>
           <ul className="mt-10 flex flex-col gap-5">
             {reassurances.map((r) => (
@@ -56,7 +56,7 @@ export default function BookPage() {
             ))}
           </ul>
           <p className="mt-10 text-sm text-subtle">
-            Prefer email?{' '}
+            Удобнее на почту?{' '}
             <a href={`mailto:${site.email}`} className="text-fg underline-offset-4 hover:underline">
               {site.email}
             </a>
