@@ -1,0 +1,229 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   AXON DESIGN SYSTEM — TOKENS
+   Dark-first, editorial, restrained. Light theme optional via
+   [data-theme='light']. Colors expressed as raw HSL channels so
+   Tailwind's <alpha-value> opacity modifiers work.
+   ============================================================ */
+
+:root {
+  /* — Color (dark, default) — */
+  --bg: 222 24% 5%;
+  --bg-elevated: 222 22% 7%;
+  --surface: 220 18% 10%;
+  --surface-hover: 220 16% 13%;
+  --border: 220 14% 18%;
+  --border-strong: 220 14% 26%;
+  --fg: 210 30% 98%;
+  --muted: 215 16% 66%;
+  --subtle: 216 14% 46%;
+  --accent: 156 72% 52%;
+  --accent-fg: 158 64% 8%;
+  --accent-muted: 156 50% 22%;
+  --ring: 156 72% 52%;
+  --success: 152 62% 48%;
+  --warning: 38 92% 58%;
+
+  /* — Radius — */
+  --radius-sm: 0.375rem;
+  --radius: 0.625rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.125rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+
+  /* — Elevation / shadow — */
+  --shadow-xs: 0 1px 2px hsl(222 40% 2% / 0.4);
+  --shadow-sm: 0 2px 6px hsl(222 40% 2% / 0.45);
+  --shadow-md: 0 8px 24px -8px hsl(222 40% 2% / 0.55);
+  --shadow-lg: 0 24px 60px -18px hsl(222 50% 2% / 0.6);
+  --shadow-xl: 0 40px 110px -30px hsl(222 50% 1% / 0.7);
+  --shadow-glow: 0 0 0 1px hsl(var(--accent) / 0.18), 0 12px 48px -12px hsl(var(--accent) / 0.35);
+
+  /* — Motion — */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 150ms;
+  --dur: 250ms;
+  --dur-slow: 600ms;
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg: 210 40% 99%;
+  --bg-elevated: 0 0% 100%;
+  --surface: 210 30% 97%;
+  --surface-hover: 210 28% 94%;
+  --border: 214 20% 88%;
+  --border-strong: 214 18% 78%;
+  --fg: 222 32% 10%;
+  --muted: 215 16% 38%;
+  --subtle: 216 12% 52%;
+  --accent: 156 64% 36%;
+  --accent-fg: 0 0% 100%;
+  --accent-muted: 156 50% 86%;
+  --ring: 156 64% 36%;
+  color-scheme: light;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg text-fg font-sans antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'ss01';
+  }
+
+  ::selection {
+    background: hsl(var(--accent) / 0.28);
+    color: hsl(var(--fg));
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/* ============================================================
+   COMPONENT UTILITIES
+   ============================================================ */
+
+@layer components {
+  .container-content {
+    @apply mx-auto w-full max-w-content px-5 sm:px-6 lg:px-8;
+  }
+
+  .overline {
+    @apply text-overline uppercase text-accent;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-br from-fg via-fg to-muted bg-clip-text text-transparent;
+  }
+
+  .hairline {
+    @apply border-t border-border;
+  }
+
+  .card {
+    @apply rounded-lg border border-border bg-surface/60 backdrop-blur-sm;
+  }
+
+  .card-hover {
+    @apply transition-[transform,border-color,background-color,box-shadow] duration-300 ease-out-expo hover:-translate-y-0.5 hover:border-border-strong hover:bg-surface-hover hover:shadow-lg;
+  }
+
+  .skip-link {
+    @apply sr-only;
+  }
+  .skip-link:focus {
+    @apply not-sr-only fixed left-4 top-4 z-[100] rounded-md bg-accent px-4 py-2 text-sm font-medium text-accent-fg;
+  }
+}
+
+@layer utilities {
+  .section {
+    @apply py-20 sm:py-28 lg:py-36;
+  }
+
+  .noise {
+    background-image: radial-gradient(hsl(var(--fg) / 0.018) 0.5px, transparent 0.5px);
+    background-size: 4px 4px;
+  }
+
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  }
+
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent);
+    mask-image: linear-gradient(to bottom, black 70%, transparent);
+  }
+}
+
+/* ============================================================
+   RANGE SLIDER (ROI calculator)
+   ============================================================ */
+.roi-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 9999px;
+  cursor: pointer;
+  outline-offset: 6px;
+}
+.roi-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 9999px;
+  background: hsl(var(--fg));
+  border: 3px solid hsl(var(--accent));
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-fast) var(--ease-out-expo);
+}
+.roi-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+}
+.roi-slider::-moz-range-thumb {
+  height: 18px;
+  width: 18px;
+  border-radius: 9999px;
+  background: hsl(var(--fg));
+  border: 3px solid hsl(var(--accent));
+  box-shadow: var(--shadow-sm);
+}
+.roi-slider::-moz-range-track {
+  height: 4px;
+  border-radius: 9999px;
+}
+
+/* ============================================================
+   REDUCED MOTION — global guardrail
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
