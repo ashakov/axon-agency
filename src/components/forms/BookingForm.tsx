@@ -44,11 +44,11 @@ export function BookingForm() {
   const goal = watch('goal');
   const companySize = watch('companySize');
 
-  // Auto-redirect to Calendly shortly after success.
+  // Auto-redirect to Telegram shortly after success.
   useEffect(() => {
     if (!done) return;
     const t = setTimeout(() => {
-      window.location.href = site.calendlyUrl;
+      window.location.href = site.telegramUrl;
     }, 2600);
     return () => clearTimeout(t);
   }, [done]);
@@ -89,11 +89,11 @@ export function BookingForm() {
         </span>
         <h2 className="text-display-sm">Готово.</h2>
         <p className="max-w-sm text-muted">
-          Мы получили ваши данные. Сейчас откроем выбор времени — если он
+          Мы получили ваши данные. Сейчас откроем Telegram — если он
           не откроется автоматически, нажмите кнопку ниже.
         </p>
         <Button asChild size="lg">
-          <a href={site.calendlyUrl}>Выбрать время</a>
+          <a href={site.telegramUrl}>Написать в Telegram</a>
         </Button>
       </div>
     );

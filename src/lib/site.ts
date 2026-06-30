@@ -6,9 +6,9 @@ export const site = {
   description:
     'Axon проектирует и внедряет AI-системы, которые растят выручку, снижают издержки и убирают рутину — для бизнеса, которому нужен результат, а не эксперименты.',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://axonstudio.qzz.io',
-  calendlyUrl:
-    process.env.NEXT_PUBLIC_CALENDLY_URL ??
-    'https://calendly.com/axon/strategy-session',
+  telegramUrl:
+    process.env.NEXT_PUBLIC_TELEGRAM_URL ??
+    'https://t.me/your_username',
   email: 'hello@axon.agency',
   locale: 'ru_RU',
   founded: '2023',

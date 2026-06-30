@@ -40,7 +40,7 @@ All optional for local dev — the site runs with zero secrets.
 | Variable                   | Purpose                                                        |
 | -------------------------- | ------------------------------------------------------------- |
 | `NEXT_PUBLIC_SITE_URL`     | Canonical URL for metadata, sitemap, robots, OG.              |
-| `NEXT_PUBLIC_CALENDLY_URL` | Where the booking form routes after qualification.            |
+| `NEXT_PUBLIC_TELEGRAM_URL` | Where the booking form routes after qualification (Telegram).  |
 | `LEAD_NOTIFY_EMAIL`        | Where to forward qualified leads (used in the Server Action). |
 
 ---
@@ -124,7 +124,7 @@ Metadata API (title template, OG, Twitter), canonical URLs, `robots.ts`,
 honeypot. On submit it calls the `submitBooking` Server Action, which
 re-validates server-side and currently logs the lead. **Wire your CRM/email at
 the marked integration point in `src/app/actions/book.ts`.** On success the user
-is routed to `NEXT_PUBLIC_CALENDLY_URL` to pick a time.
+is routed to `NEXT_PUBLIC_TELEGRAM_URL` to message you on Telegram.
 
 ---
 
@@ -135,8 +135,8 @@ is routed to `NEXT_PUBLIC_CALENDLY_URL` to pick a time.
    so re-adding English or going bilingual is a content change, not a rewrite.
 2. **Brand "Axon"** and all sample names, logos, testimonials, case-study
    figures, and the trusted-by list are **placeholders** — replace before launch.
-3. **CTA = qualify-then-Calendly.** Per the brief, the form captures a lead and
-   then hands off to Calendly; both halves are wired, Calendly URL is a constant.
+3. **CTA = qualify-then-Telegram.** The form captures a lead and then hands off
+   to Telegram; the URL is `NEXT_PUBLIC_TELEGRAM_URL` (a constant fallback in `site.ts`).
 4. **ROI calculator** uses a conservative 65%-of-manual-hours recovery over 48
    working weeks. Tune the constants in `RoiCalculator.tsx` if needed.
 5. **No CMS.** Content is code (`src/lib/content.ts`) for speed and type safety;
@@ -161,7 +161,7 @@ and Speed Insights are already wired in `layout.tsx`.
 | Кейсы | `src/lib/content.ts` → `caseStudies` | Настоящие проекты и цифры (подтвердите с клиентом) |
 | Отзывы | `src/lib/content.ts` → `testimonials` | Реальные имена, должности, цитаты |
 | Контакты/бренд | `src/lib/site.ts` | `name`, `email`, `social`, `url` |
-| Запись | `.env.local` → `NEXT_PUBLIC_CALENDLY_URL` | Ваша ссылка Calendly |
+| Запись | `.env.local` → `NEXT_PUBLIC_TELEGRAM_URL` | Ваша ссылка Telegram (https://t.me/...) |
 | Заявки с формы | `src/app/actions/book.ts` | Подключить CRM/почту в точке интеграции |
 | Подписка на гайд | `src/app/actions/lead-magnet.ts` | Подключить рассылку в точке интеграции |
 | PDF-гайд | `public/axon-guide.pdf` | При желании — свой брендированный гайд |
