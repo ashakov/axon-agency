@@ -8,7 +8,7 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://axonstudio.qzz.io',
   telegramUrl:
     process.env.NEXT_PUBLIC_TELEGRAM_URL ??
-    'https://t.me/your_username',
+    'https://t.me/arshakua',
   email: 'hello@axon.agency',
   locale: 'ru_RU',
   founded: '2023',
