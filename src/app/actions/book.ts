@@ -1,13 +1,12 @@
 'use server';
 
 import { bookingSchema, type BookingState } from '@/lib/booking-schema';
+import { notifyTelegram, escapeHtml } from '@/lib/telegram';
 
 /**
  * Server Action for the qualification form.
- *
- * In production, wire the `lead` payload to your CRM / email (e.g. Resend,
- * HubSpot, a webhook). It's intentionally provider-agnostic here so the repo
- * runs with zero secrets — replace the marked block with your integration.
+ * Validates server-side, then delivers the lead to Telegram (if configured
+ * via TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID). Falls back to server logs.
  */
 export async function submitBooking(
   _prev: BookingState,
@@ -36,23 +35,28 @@ export async function submitBooking(
     return { status: 'success' };
   }
 
-  // Drop the honeypot field; forward only real lead data.
   const lead = {
     name: parsed.data.name,
     email: parsed.data.email,
     company: parsed.data.company,
     companySize: parsed.data.companySize,
     goal: parsed.data.goal,
-    details: parsed.data.details,
+    details: parsed.data.details ?? '',
   };
 
   try {
-    // ── INTEGRATION POINT ───────────────────────────────────
-    // await sendToCrm(lead);
-    // await notifyTeam(process.env.LEAD_NOTIFY_EMAIL, lead);
-    // For now we log server-side so the flow is verifiable end-to-end.
+    const e = escapeHtml;
+    const message =
+      '<b>🆕 Новая заявка — Axon</b>\n\n' +
+      `👤 <b>Имя:</b> ${e(lead.name)}\n` +
+      `✉️ <b>Почта:</b> ${e(lead.email)}\n` +
+      `🏢 <b>Компания:</b> ${e(lead.company)}\n` +
+      `👥 <b>Размер:</b> ${e(lead.companySize)}\n` +
+      `🎯 <b>Цель:</b> ${e(lead.goal)}` +
+      (lead.details ? `\n📝 <b>Детали:</b> ${e(lead.details)}` : '');
+
+    await notifyTelegram(message);
     console.info('[booking] qualified lead', lead);
-    // ────────────────────────────────────────────────────────
     return { status: 'success' };
   } catch {
     return {

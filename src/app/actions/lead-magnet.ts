@@ -1,6 +1,7 @@
 'use server';
 
 import { z } from 'zod';
+import { notifyTelegram, escapeHtml } from '@/lib/telegram';
 
 const schema = z.object({
   email: z.string().trim().email('Укажите корректную почту'),
@@ -37,6 +38,7 @@ export async function requestGuide(
   try {
     // ── ТОЧКА ИНТЕГРАЦИИ ────────────────────────────────────
     // await addToNewsletter(parsed.data.email);
+    await notifyTelegram(`📩 <b>Новый подписчик на гайд</b>\n${escapeHtml(parsed.data.email)}`);
     console.info('[lead-magnet] new subscriber', parsed.data.email);
     // ────────────────────────────────────────────────────────
     return { status: 'success' };
