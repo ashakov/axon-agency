@@ -63,7 +63,7 @@ export function BookingForm() {
     setStep((s) => Math.max(s - 1, 0));
   }
 
-  const onSubmit = handleSubmit(async (data) => {
+  const submitFinal = handleSubmit(async (data) => {
     setSubmitting(true);
     setServerError(null);
     const fd = new FormData();
@@ -80,6 +80,17 @@ export function BookingForm() {
       );
     }
   });
+
+  // Guard against implicit submission (e.g. pressing Enter): only the final
+  // step actually submits; earlier steps advance instead.
+  function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (step < STEPS.length - 1) {
+      void next();
+      return;
+    }
+    void submitFinal();
+  }
 
   if (done) {
     return (
@@ -100,7 +111,7 @@ export function BookingForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="card p-6 sm:p-8">
+    <form onSubmit={handleFormSubmit} noValidate className="card p-6 sm:p-8">
       {/* Progress */}
       <div className="mb-8 flex items-center gap-2" aria-hidden="true">
         {STEPS.map((s, i) => (
