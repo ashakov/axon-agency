@@ -64,6 +64,8 @@ export function BookingForm() {
   }
 
   const submitFinal = handleSubmit(async (data) => {
+    // Defense-in-depth: never submit unless we're on the final step.
+    if (step < STEPS.length - 1) return;
     setSubmitting(true);
     setServerError(null);
     const fd = new FormData();
@@ -206,12 +208,19 @@ export function BookingForm() {
         )}
 
         {step < STEPS.length - 1 ? (
-          <Button type="button" onClick={next}>
+          <Button key="next" type="button" onClick={() => void next()}>
             Далее
             <ArrowRight className="h-4 w-4" />
           </Button>
         ) : (
-          <Button type="submit" disabled={submitting}>
+          <Button
+            key="submit"
+            type="button"
+            disabled={submitting}
+            onClick={() => {
+              if (step === STEPS.length - 1) void submitFinal();
+            }}
+          >
             {submitting ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
