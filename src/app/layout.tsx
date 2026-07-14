@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { site } from '@/lib/site';
@@ -60,7 +60,14 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const cookieStore = await cookies();
   const cookieLocale = cookieStore.get(LOCALE_COOKIE)?.value;
-  const locale: Locale = isLocale(cookieLocale) ? cookieLocale : defaultLocale;
+  let locale: Locale = defaultLocale;
+  if (isLocale(cookieLocale)) {
+    locale = cookieLocale;
+  } else {
+    // First visit: middleware detected the browser language into this header.
+    const headerLocale = (await headers()).get('x-locale');
+    if (isLocale(headerLocale)) locale = headerLocale;
+  }
 
   return (
     <html lang={locale} className={`${inter.variable} ${mono.variable}`} suppressHydrationWarning>
