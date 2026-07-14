@@ -1,33 +1,38 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Check, Loader2, CalendarCheck } from 'lucide-react';
-import {
-  bookingSchema,
-  type BookingInput,
-  COMPANY_SIZES,
-  GOALS,
-} from '@/lib/booking-schema';
+import { makeBookingSchema, type BookingInput } from '@/lib/booking-schema';
 import { submitBooking } from '@/app/actions/book';
 import { Button } from '@/components/ui/Button';
 import { site } from '@/lib/site';
 import { cn } from '@/lib/utils';
-
-type FieldName = keyof BookingInput;
-const STEPS: { title: string; fields: FieldName[] }[] = [
-  { title: 'О вас', fields: ['name', 'email', 'company'] },
-  { title: 'Ваш бизнес', fields: ['companySize', 'goal'] },
-  { title: 'Детали', fields: ['details'] },
-];
+import { useDictionary } from '@/components/i18n/LocaleProvider';
 
 export function BookingForm() {
+  const t = useDictionary();
+  const f = t.form;
+  const STEPS = f.steps;
+
   const [step, setStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
+
+  const schema = useMemo(
+    () =>
+      makeBookingSchema({
+        errName: f.errName,
+        errEmail: f.errEmail,
+        errCompany: f.errCompany,
+        errSize: f.errSize,
+        errGoal: f.errGoal,
+      }),
+    [f.errName, f.errEmail, f.errCompany, f.errSize, f.errGoal],
+  );
 
   const {
     register,
@@ -36,7 +41,7 @@ export function BookingForm() {
     watch,
     formState: { errors },
   } = useForm<BookingInput>({
-    resolver: zodResolver(bookingSchema),
+    resolver: zodResolver(schema),
     mode: 'onBlur',
     defaultValues: { website: '', details: '' },
   });
@@ -44,13 +49,12 @@ export function BookingForm() {
   const goal = watch('goal');
   const companySize = watch('companySize');
 
-  // Auto-redirect to Telegram shortly after success.
   useEffect(() => {
     if (!done) return;
-    const t = setTimeout(() => {
+    const timer = setTimeout(() => {
       window.location.href = site.telegramUrl;
     }, 2600);
-    return () => clearTimeout(t);
+    return () => clearTimeout(timer);
   }, [done]);
 
   async function next() {
@@ -64,7 +68,6 @@ export function BookingForm() {
   }
 
   const submitFinal = handleSubmit(async (data) => {
-    // Defense-in-depth: never submit unless we're on the final step.
     if (step < STEPS.length - 1) return;
     setSubmitting(true);
     setServerError(null);
@@ -75,16 +78,10 @@ export function BookingForm() {
     if (res.status === 'success') {
       setDone(true);
     } else {
-      setServerError(
-        res.status === 'error'
-          ? res.message
-          : 'Что-то пошло не так. Попробуйте ещё раз.',
-      );
+      setServerError(res.status === 'error' ? res.message : f.genericError);
     }
   });
 
-  // Guard against implicit submission (e.g. pressing Enter): only the final
-  // step actually submits; earlier steps advance instead.
   function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (step < STEPS.length - 1) {
@@ -100,13 +97,10 @@ export function BookingForm() {
         <span className="flex h-14 w-14 items-center justify-center rounded-full bg-accent/15 text-accent">
           <CalendarCheck className="h-7 w-7" aria-hidden="true" />
         </span>
-        <h2 className="text-display-sm">Готово.</h2>
-        <p className="max-w-sm text-muted">
-          Мы получили ваши данные. Сейчас откроем Telegram — если он
-          не откроется автоматически, нажмите кнопку ниже.
-        </p>
+        <h2 className="text-display-sm">{f.doneTitle}</h2>
+        <p className="max-w-sm text-muted">{f.doneBody}</p>
         <Button asChild size="lg">
-          <a href={site.telegramUrl}>Написать в Telegram</a>
+          <a href={site.telegramUrl}>{f.doneCta}</a>
         </Button>
       </div>
     );
@@ -114,7 +108,6 @@ export function BookingForm() {
 
   return (
     <form onSubmit={handleFormSubmit} noValidate className="card p-6 sm:p-8">
-      {/* Progress */}
       <div className="mb-8 flex items-center gap-2" aria-hidden="true">
         {STEPS.map((s, i) => (
           <div
@@ -127,12 +120,11 @@ export function BookingForm() {
         ))}
       </div>
       <p className="mb-6 text-sm text-subtle">
-        Шаг {step + 1} из {STEPS.length} · {STEPS[step]?.title}
+        {f.stepLabel} {step + 1} {f.stepOf} {STEPS.length} · {STEPS[step]?.title}
       </p>
 
-      {/* Honeypot (visually hidden, off the a11y tree) */}
       <div className="sr-only" aria-hidden="true">
-        <label htmlFor="website">Оставьте поле пустым</label>
+        <label htmlFor="website">{f.detailsLabel}</label>
         <input id="website" type="text" tabIndex={-1} autoComplete="off" {...register('website')} />
       </div>
 
@@ -147,26 +139,26 @@ export function BookingForm() {
         >
           {step === 0 && (
             <>
-              <TextField label="Имя" error={errors.name?.message} {...register('name')} autoComplete="name" />
-              <TextField label="Рабочая почта" type="email" error={errors.email?.message} {...register('email')} autoComplete="email" />
-              <TextField label="Компания" error={errors.company?.message} {...register('company')} autoComplete="organization" />
+              <TextField label={f.name} error={errors.name?.message} {...register('name')} autoComplete="name" />
+              <TextField label={f.email} type="email" error={errors.email?.message} {...register('email')} autoComplete="email" />
+              <TextField label={f.company} error={errors.company?.message} {...register('company')} autoComplete="organization" />
             </>
           )}
 
           {step === 1 && (
             <>
               <ChipGroup
-                label="Размер компании"
+                label={f.companySizeLabel}
                 name="companySize"
-                options={COMPANY_SIZES}
+                options={f.companySizes}
                 selected={companySize}
                 error={errors.companySize?.message}
                 register={register('companySize')}
               />
               <ChipGroup
-                label="Что в приоритете?"
+                label={f.goalLabel}
                 name="goal"
-                options={GOALS}
+                options={f.goals}
                 selected={goal}
                 error={errors.goal?.message}
                 register={register('goal')}
@@ -177,13 +169,13 @@ export function BookingForm() {
           {step === 2 && (
             <div className="flex flex-col gap-2">
               <label htmlFor="details" className="text-sm font-medium text-fg">
-                Что нам важно знать? <span className="text-subtle">(необязательно)</span>
+                {f.detailsLabel} <span className="text-subtle">{f.optional}</span>
               </label>
               <textarea
                 id="details"
                 rows={5}
                 {...register('details')}
-                placeholder="Какие сервисы используете, какой процесс съедает время, примерные сроки…"
+                placeholder={f.detailsPlaceholder}
                 className="w-full resize-none rounded-lg border border-border bg-bg-elevated px-4 py-3 text-fg placeholder:text-subtle focus-visible:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
@@ -201,7 +193,7 @@ export function BookingForm() {
         {step > 0 ? (
           <Button type="button" variant="ghost" onClick={back}>
             <ArrowLeft className="h-4 w-4" />
-            Назад
+            {f.back}
           </Button>
         ) : (
           <span />
@@ -209,7 +201,7 @@ export function BookingForm() {
 
         {step < STEPS.length - 1 ? (
           <Button key="next" type="button" onClick={() => void next()}>
-            Далее
+            {f.next}
             <ArrowRight className="h-4 w-4" />
           </Button>
         ) : (
@@ -224,11 +216,11 @@ export function BookingForm() {
             {submitting ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
-                Отправляем…
+                {f.submitting}
               </>
             ) : (
               <>
-                Оставить заявку
+                {f.submit}
                 <Check className="h-4 w-4" />
               </>
             )}
@@ -309,13 +301,7 @@ function ChipGroup({
                   : 'border-border bg-bg-elevated text-muted hover:border-border-strong hover:text-fg',
               )}
             >
-              <input
-                id={id}
-                type="radio"
-                value={opt}
-                className="sr-only"
-                {...register}
-              />
+              <input id={id} type="radio" value={opt} className="sr-only" {...register} />
               {opt}
             </label>
           );

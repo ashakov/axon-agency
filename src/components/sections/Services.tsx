@@ -1,22 +1,25 @@
+'use client';
+
 import { Section, SectionHeader } from '@/components/ui/Section';
 import { Reveal, RevealItem } from '@/components/ui/Reveal';
 import { cn } from '@/lib/utils';
-import { services } from '@/lib/content';
+import { useDictionary } from '@/components/i18n/LocaleProvider';
 
 export function Services() {
+  const t = useDictionary();
   return (
     <Section id="services" labelledBy="services-title">
       <SectionHeader
-        eyebrow="Услуги"
+        eyebrow={t.services.eyebrow}
         id="services-title"
-        title="Одна студия для всех систем, что вам нужны."
-        lead="От одного AI-агента до полной операционной платформы — проектируем, строим и сопровождаем сами."
+        title={t.services.title}
+        lead={t.services.lead}
       />
       <Reveal
         group
         className="mt-14 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3"
       >
-        {services.map((s) => (
+        {t.services.items.map((s) => (
           <RevealItem key={s.title}>
             <article
               className={cn(
@@ -31,7 +34,7 @@ export function Services() {
               <p className="mt-2 text-sm leading-relaxed text-muted">{s.description}</p>
               {s.featured ? (
                 <span className="absolute right-5 top-5 text-[0.625rem] font-medium uppercase tracking-wider text-accent">
-                  Популярно
+                  {t.services.popular}
                 </span>
               ) : null}
             </article>

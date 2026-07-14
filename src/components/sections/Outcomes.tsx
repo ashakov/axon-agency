@@ -1,36 +1,21 @@
-import { TrendingUp, Banknote, Clock } from 'lucide-react';
+'use client';
+
 import { Section, SectionHeader } from '@/components/ui/Section';
 import { Reveal, RevealItem } from '@/components/ui/Reveal';
-
-const pillars = [
-  {
-    icon: TrendingUp,
-    title: 'Растить выручку',
-    body: 'Ловим каждую заявку, отвечаем за секунды и догреваем без конца. Спрос перестаёт утекать из воронки.',
-  },
-  {
-    icon: Banknote,
-    title: 'Снижать издержки',
-    body: 'Автоматизируем рутинные 80% операций. Берём больше объёма без линейного роста штата.',
-  },
-  {
-    icon: Clock,
-    title: 'Возвращать время',
-    body: 'Возвращаем команде часы, потерянные на ручной работе, чтобы они занимались тем, что двигает бизнес.',
-  },
-];
+import { useDictionary } from '@/components/i18n/LocaleProvider';
 
 export function Outcomes() {
+  const t = useDictionary();
   return (
     <Section id="outcomes" labelledBy="outcomes-title">
       <SectionHeader
-        eyebrow="Бизнес-результаты"
+        eyebrow={t.outcomes.eyebrow}
         id="outcomes-title"
-        title="Три цифры, которые волнуют ваше руководство."
-        lead="Мы продаём не технологии. Мы продаём то, что они делают с вашим P&L."
+        title={t.outcomes.title}
+        lead={t.outcomes.lead}
       />
       <Reveal group className="mt-14 grid gap-6 md:grid-cols-3">
-        {pillars.map((p) => (
+        {t.outcomes.pillars.map((p) => (
           <RevealItem key={p.title}>
             <div className="card card-hover h-full p-7">
               <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-bg-elevated text-accent">

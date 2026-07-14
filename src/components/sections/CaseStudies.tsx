@@ -1,19 +1,22 @@
+'use client';
+
 import { ArrowUpRight } from 'lucide-react';
 import { Section, SectionHeader } from '@/components/ui/Section';
 import { Reveal, RevealItem } from '@/components/ui/Reveal';
-import { caseStudies } from '@/lib/content';
+import { useDictionary } from '@/components/i18n/LocaleProvider';
 
 export function CaseStudies() {
+  const t = useDictionary();
   return (
     <Section id="work" labelledBy="work-title">
       <SectionHeader
-        eyebrow="Избранные кейсы"
+        eyebrow={t.caseStudies.eyebrow}
         id="work-title"
-        title="Результаты, которые можно выразить цифрой."
-        lead="Несколько показательных проектов. Цифры обезличены по просьбе клиентов."
+        title={t.caseStudies.title}
+        lead={t.caseStudies.lead}
       />
       <Reveal group className="mt-14 grid gap-6 lg:grid-cols-3">
-        {caseStudies.map((c) => (
+        {t.caseStudies.items.map((c) => (
           <RevealItem key={c.title}>
             <article className="card card-hover group flex h-full flex-col p-7">
               <div className="flex items-center justify-between">

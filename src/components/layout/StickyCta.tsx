@@ -3,9 +3,11 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { useDictionary } from '@/components/i18n/LocaleProvider';
 
 /** Mobile-only sticky CTA that appears after the hero scrolls away. */
 export function StickyCta() {
+  const t = useDictionary();
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -24,7 +26,7 @@ export function StickyCta() {
         href="/book"
         className="flex h-14 items-center justify-center gap-2 rounded-full bg-accent px-6 text-sm font-semibold text-accent-fg shadow-glow"
       >
-        Записаться на сессию
+        {t.stickyCta}
         <ArrowRight className="h-4 w-4" />
       </Link>
     </div>

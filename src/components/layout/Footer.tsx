@@ -1,9 +1,12 @@
+'use client';
+
 import Link from 'next/link';
-import { site, navLinks } from '@/lib/site';
-import { services } from '@/lib/content';
+import { site } from '@/lib/site';
 import { Logo } from './Logo';
+import { useDictionary } from '@/components/i18n/LocaleProvider';
 
 export function Footer() {
+  const t = useDictionary();
   const year = new Date().getFullYear();
   return (
     <footer className="border-t border-border bg-bg-elevated">
@@ -11,7 +14,7 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div className="flex flex-col gap-4">
             <Logo />
-            <p className="max-w-xs text-sm text-muted">{site.description}</p>
+            <p className="max-w-xs text-sm text-muted">{t.meta.description}</p>
             <a
               href={`mailto:${site.email}`}
               className="w-fit text-sm text-fg underline-offset-4 hover:underline"
@@ -20,11 +23,11 @@ export function Footer() {
             </a>
           </div>
 
-          <nav aria-label="Навигация" className="flex flex-col gap-3">
+          <nav aria-label={t.footer.navigate} className="flex flex-col gap-3">
             <h2 className="text-xs font-medium uppercase tracking-wider text-subtle">
-              Разделы
+              {t.footer.navigate}
             </h2>
-            {navLinks.map((l) => (
+            {t.nav.links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
@@ -35,11 +38,11 @@ export function Footer() {
             ))}
           </nav>
 
-          <nav aria-label="Services" className="flex flex-col gap-3">
+          <nav aria-label={t.footer.services} className="flex flex-col gap-3">
             <h2 className="text-xs font-medium uppercase tracking-wider text-subtle">
-              Услуги
+              {t.footer.services}
             </h2>
-            {services.slice(0, 6).map((s) => (
+            {t.services.items.slice(0, 6).map((s) => (
               <Link
                 key={s.title}
                 href="#services"
@@ -52,25 +55,25 @@ export function Footer() {
 
           <div className="flex flex-col gap-3">
             <h2 className="text-xs font-medium uppercase tracking-wider text-subtle">
-              Компания
+              {t.footer.company}
             </h2>
             <a href={site.social.linkedin} className="text-sm text-muted transition-colors hover:text-fg" rel="noopener noreferrer" target="_blank">
-              LinkedIn
+              {t.footer.linkedin}
             </a>
             <a href={site.social.x} className="text-sm text-muted transition-colors hover:text-fg" rel="noopener noreferrer" target="_blank">
-              X / Twitter
+              {t.footer.x}
             </a>
             <Link href="/book" className="text-sm text-muted transition-colors hover:text-fg">
-              Записаться
+              {t.footer.bookSession}
             </Link>
           </div>
         </div>
 
         <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-border pt-8 text-sm text-subtle sm:flex-row sm:items-center">
           <p>
-            &copy; {year} {site.legalName}. Все права защищены.
+            &copy; {year} {site.legalName}. {t.footer.rights}
           </p>
-          <p className="font-mono text-xs">Делаем результат, а не демо.</p>
+          <p className="font-mono text-xs">{t.footer.kicker}</p>
         </div>
       </div>
     </footer>

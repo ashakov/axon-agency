@@ -1,18 +1,21 @@
+'use client';
+
 import { Section, SectionHeader } from '@/components/ui/Section';
 import { Reveal, RevealItem } from '@/components/ui/Reveal';
-import { industries } from '@/lib/content';
+import { useDictionary } from '@/components/i18n/LocaleProvider';
 
 export function Industries() {
+  const t = useDictionary();
   return (
     <Section id="industries" labelledBy="industries-title" className="bg-bg-elevated/40">
       <SectionHeader
-        eyebrow="Индустрии"
+        eyebrow={t.industries.eyebrow}
         id="industries-title"
-        title="Под то, как реально устроен ваш бизнес."
-        lead="Мы автоматизировали операции команд в этих индустриях. Ваши «особые случаи» мы, скорее всего, уже видели."
+        title={t.industries.title}
+        lead={t.industries.lead}
       />
       <Reveal group className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {industries.map((ind) => (
+        {t.industries.items.map((ind) => (
           <RevealItem key={ind.name}>
             <div className="card card-hover flex h-full items-start gap-4 p-6">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border bg-bg-elevated text-accent">

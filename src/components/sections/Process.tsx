@@ -1,18 +1,21 @@
+'use client';
+
 import { Section, SectionHeader } from '@/components/ui/Section';
 import { Reveal, RevealItem } from '@/components/ui/Reveal';
-import { steps } from '@/lib/content';
+import { useDictionary } from '@/components/i18n/LocaleProvider';
 
 export function Process() {
+  const t = useDictionary();
   return (
     <Section id="process" labelledBy="process-title" className="bg-bg-elevated/40">
       <SectionHeader
-        eyebrow="Как мы работаем"
+        eyebrow={t.process.eyebrow}
         id="process-title"
-        title="Короткий путь от хаоса к системам, что копят эффект."
-        lead="Без полугодового «обследования». Двигаемся короткими циклами и быстро показываем рабочий результат."
+        title={t.process.title}
+        lead={t.process.lead}
       />
       <Reveal group className="mt-16 grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-2 lg:grid-cols-4">
-        {steps.map((s) => (
+        {t.process.steps.map((s) => (
           <RevealItem key={s.n}>
             <div className="group h-full bg-bg p-7 transition-colors duration-300 hover:bg-surface">
               <div className="flex items-center justify-between">

@@ -1,22 +1,25 @@
+'use client';
+
 import { Section, SectionHeader } from '@/components/ui/Section';
 import { Reveal, RevealItem } from '@/components/ui/Reveal';
-import { technologies } from '@/lib/content';
+import { useDictionary } from '@/components/i18n/LocaleProvider';
 
 export function Technology() {
+  const t = useDictionary();
   return (
     <Section id="technology" labelledBy="technology-title">
       <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-20">
         <SectionHeader
-          eyebrow="Технологии"
+          eyebrow={t.technology.eyebrow}
           id="technology-title"
-          title="Лучшие модели. Скучно-надёжная инженерия."
-          lead="Подбираем инструмент под результат и владеем интеграцией от и до. Вы получаете передовой AI без операционного риска."
+          title={t.technology.title}
+          lead={t.technology.lead}
         />
         <Reveal group className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3">
-          {technologies.map((t) => (
-            <RevealItem key={t}>
+          {t.technology.items.map((tech) => (
+            <RevealItem key={tech}>
               <div className="flex h-20 items-center justify-center bg-bg text-sm font-medium text-muted transition-colors duration-300 hover:bg-surface hover:text-fg">
-                {t}
+                {tech}
               </div>
             </RevealItem>
           ))}
